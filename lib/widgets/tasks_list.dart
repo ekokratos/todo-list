@@ -18,7 +18,29 @@ class TasksList extends StatelessWidget {
                 taskData.updateTask(task);
               },
               taskCallback: () {
-                taskData.deleteTask(task);
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('Delete Task'),
+                        content: Text('Are you sure?'),
+                        actions: <Widget>[
+                          FlatButton(
+                            onPressed: () {
+                              taskData.deleteTask(task);
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Yes'),
+                          ),
+                          FlatButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('No'),
+                          )
+                        ],
+                      );
+                    });
               },
             );
           },
