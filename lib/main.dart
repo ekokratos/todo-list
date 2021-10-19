@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:todoey/models/task_data.dart';
 import 'package:todoey/screens/tasks_screen.dart';
@@ -11,6 +12,8 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => TaskData(),
       child: MaterialApp(
+        builder: BotToastInit(),
+        navigatorObservers: [BotToastNavigatorObserver()],
         home: TasksScreen(),
       ),
     );
