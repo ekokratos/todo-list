@@ -1,5 +1,5 @@
 # todo-list
-A simple [*Flutter*](https://flutter.dev/) based To-Do list application.
+A simple [*Flutter*](https://flutter.dev/) based To-Do list application using Provider.
 
 # In-App screenshots
 
