@@ -1,6 +1,8 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoey/models/task_data.dart';
+import 'package:todoey/style.dart';
 
 class AddTaskScreen extends StatelessWidget {
   static String newTaskTitle;
@@ -25,7 +27,7 @@ class AddTaskScreen extends StatelessWidget {
               'Add Task',
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: Colors.lightBlueAccent,
+                  color: kPrimaryColor,
                   fontSize: 30,
                   fontWeight: FontWeight.w400),
             ),
@@ -39,18 +41,22 @@ class AddTaskScreen extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            FlatButton(
+            TextButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.resolveWith(
+                    (states) => kPrimaryColor),
+              ),
+              onPressed: () {
+                Provider.of<TaskData>(context, listen: false)
+                    .addTask(newTaskTitle);
+                BotToast.showText(text: "Item added");
+                Navigator.pop(context);
+              },
               child: Text(
                 'Add',
                 style: TextStyle(color: Colors.white),
               ),
-              color: Colors.lightBlueAccent,
-              onPressed: () {
-                Provider.of<TaskData>(context).addTask(newTaskTitle);
-
-                Navigator.pop(context);
-              },
-            )
+            ),
           ],
         ),
       ),
