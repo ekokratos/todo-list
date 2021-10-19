@@ -13,7 +13,11 @@ class TasksScreen extends StatelessWidget {
       backgroundColor: kPrimaryColor,
       floatingActionButton: FloatingActionButton(
         backgroundColor: kPrimaryColor,
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          color: kSecondaryColor,
+          size: 32,
+        ),
         onPressed: () {
           showModalBottomSheet(
             context: (context),
@@ -33,7 +37,7 @@ class TasksScreen extends StatelessWidget {
                   child: Icon(
                     Icons.toc,
                     size: 30,
-                    color: kPrimaryColor,
+                    color: kSecondaryColor,
                   ),
                   backgroundColor: Colors.white,
                   radius: 30,
@@ -69,7 +73,9 @@ class TasksScreen extends StatelessWidget {
                   child: Provider.of<TaskData>(context).taskCount == 0
                       ? Text(
                           'Add tasks',
-                          style: TextStyle(color: Colors.black54, fontSize: 24),
+                          style: TextStyle(
+                              color: kPrimaryColor.withOpacity(0.5),
+                              fontSize: 24),
                         )
                       : TasksList(),
                 ),
