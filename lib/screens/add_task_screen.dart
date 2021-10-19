@@ -23,17 +23,32 @@ class AddTaskScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
-              'Add Task',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: kPrimaryColor,
-                  fontSize: 30,
-                  fontWeight: FontWeight.w400),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Add Task',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: kPrimaryColor,
+                    fontSize: 26,
+                    fontWeight: FontWeight.w400),
+              ),
             ),
+            SizedBox(height: 15),
             TextField(
               autofocus: false,
               textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                isDense: true,
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: kSecondaryColor, width: 1.2),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: kSecondaryColor, width: 1.0),
+                ),
+              ),
               onChanged: (newText) {
                 newTaskTitle = newText;
               },
@@ -47,10 +62,13 @@ class AddTaskScreen extends StatelessWidget {
                     (states) => kPrimaryColor),
               ),
               onPressed: () {
-                Provider.of<TaskData>(context, listen: false)
-                    .addTask(newTaskTitle);
-                BotToast.showText(text: "Item added");
-                Navigator.pop(context);
+                if (newTaskTitle.isNotEmpty) {
+                  Provider.of<TaskData>(context, listen: false)
+                      .addTask(newTaskTitle);
+                  BotToast.showText(text: "Item added");
+                  Navigator.pop(context);
+                } else
+                  BotToast.showText(text: "Enter text");
               },
               child: Text(
                 'Add',

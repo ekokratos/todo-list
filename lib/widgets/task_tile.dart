@@ -12,20 +12,23 @@ class TaskTile extends StatelessWidget {
       this.taskTitle,
       this.checkboxCallback,
       this.taskCallback});
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onLongPress: taskCallback,
       child: ListTile(
-          title: Text(
-            taskTitle,
-            style: TextStyle(
-                decoration: isChecked ? TextDecoration.lineThrough : null),
-          ),
-          trailing: Checkbox(
-              value: isChecked,
-              activeColor: kPrimaryColor,
-              onChanged: checkboxCallback)),
+        visualDensity: VisualDensity.compact,
+        title: Text(
+          taskTitle,
+          style: TextStyle(
+              decoration: isChecked ? TextDecoration.lineThrough : null),
+        ),
+        trailing: Checkbox(
+            value: isChecked,
+            activeColor: kPrimaryColor,
+            onChanged: checkboxCallback),
+      ),
     );
   }
 }
